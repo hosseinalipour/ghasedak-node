@@ -43,16 +43,21 @@ Create an instance from `Ghasedak` class with your API key:
 
 ```javascript
 let ghasedak = Ghasedak(
-	"3ef8539ba50c06b2a11d674c8a7ded7d7360d7b090b5146ff0761e8d9927bd31"
+  "3ef8539ba50c06b2a11d674c8a7ded7d7360d7b090b5146ff0761e8d9927bd31"
 );
 ```
 
 Send some sms:
 
 ```javascript
-ghasedak.send({
-	message: "Hello World!",
-	receptor: "09xxxxxxxxx",
-  linenumber: "300002525"
-});
+ghasedak
+  .send({
+    message: "Hello World!",
+    receptor: "09xxxxxxxxx",
+    linenumber: "300002525"
+  })
+  .then(res => {
+    // ... check documentation for response type
+    // https://ghasedak.io/docs
+  });
 ```
