@@ -1,0 +1,7 @@
+{
+  "name": "ghasedak",
+  "version": "0.1.0",
+  "description": "Ghasedak SMS API",
+  "main": "index.js",
+  "license": "MIT"
+}
