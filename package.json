@@ -3,5 +3,8 @@
   "version": "0.1.0",
   "description": "Ghasedak SMS API",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.0"
+  }
 }
