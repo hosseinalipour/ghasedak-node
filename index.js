@@ -53,7 +53,7 @@ module.exports = function(apikey) {
       });
   }
 
-  function bulk(opts) {
+  async function bulk(opts) {
     const params = validateOpts(
       opts,
       ["message", "receptor", "linenumber", "senddate", "checkid"],
@@ -73,7 +73,7 @@ module.exports = function(apikey) {
       });
   }
 
-  function pair(opts) {
+  async function pair(opts) {
     const params = validateOpts(
       opts,
       ["message", "receptor", "senddate", "checkid"],
@@ -93,7 +93,7 @@ module.exports = function(apikey) {
       });
   }
 
-  function verification(opts) {
+  async function verification(opts) {
     const params = validateOpts(
       opts,
       [
@@ -128,7 +128,7 @@ module.exports = function(apikey) {
       });
   }
 
-  function voice(opts) {
+  async function voice(opts) {
     const params = validateOpts(
       opts,
       ["message", "receptor", "senddate"],
@@ -148,7 +148,7 @@ module.exports = function(apikey) {
       });
   }
 
-  function status(opts) {
+  async function status(opts) {
     const params = validateOpts(opts, ["id", "type"], ["id", "type"]);
 
     if (!params) return false;
@@ -164,7 +164,7 @@ module.exports = function(apikey) {
       });
   }
 
-  function newGroup(opts) {
+  async function newGroup(opts) {
     const params = validateOpts(opts, ["name", "parent"], ["name"]);
 
     if (!params) return false;
@@ -180,7 +180,7 @@ module.exports = function(apikey) {
       });
   }
 
-  function addNumber(opts) {
+  async function addNumber(opts) {
     const params = validateOpts(
       opts,
       ["firstname", "lastname", "email", "groupid", "number"],
@@ -200,7 +200,7 @@ module.exports = function(apikey) {
       });
   }
 
-  function groupList(opts) {
+  async function groupList(opts) {
     const params = validateOpts(opts, ["parent"], []);
 
     if (!params) return false;
@@ -217,7 +217,7 @@ module.exports = function(apikey) {
       });
   }
 
-  function listNumber(opts) {
+  async function listNumber(opts) {
     const params = validateOpts(
       opts,
       ["offset", "page", "groupid"],
@@ -238,7 +238,7 @@ module.exports = function(apikey) {
       });
   }
 
-  function groupEdit(opts) {
+  async function groupEdit(opts) {
     const params = validateOpts(opts, ["groupid", "name"], ["groupid", "name"]);
 
     if (!params) return false;
@@ -255,7 +255,7 @@ module.exports = function(apikey) {
       });
   }
 
-  function groupRemove(opts) {
+  async function groupRemove(opts) {
     const params = validateOpts(opts, ["groupid"], ["groupid"]);
 
     if (!params) return false;
@@ -272,7 +272,7 @@ module.exports = function(apikey) {
       });
   }
 
-  function receiveLast(opts) {
+  async function receiveLast(opts) {
     const params = validateOpts(
       opts,
       ["linenumber", "isread"],
@@ -293,7 +293,7 @@ module.exports = function(apikey) {
       });
   }
 
-  function receivePaging(opts) {
+  async function receivePaging(opts) {
     const params = validateOpts(
       opts,
       ["offset", "page", "todate", "fromdate", "isread", "linenumber"],
@@ -314,5 +314,56 @@ module.exports = function(apikey) {
       });
   }
 
-  return { send, bulk, pair, verification };
+  async function smsCancel(opts) {
+    const params = validateOpts(opts, ["messageid"], ["messageid"]);
+
+    if (!params) return false;
+
+    return api
+      .post("https://api.ghasedak.io/v2/sms/cancel", params, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          apikey
+        }
+      })
+      .then(res => {
+        return res.data;
+      });
+  }
+
+  async function accountInfo(opts) {
+    const params = validateOpts(opts, [], []);
+
+    if (!params) return false;
+
+    return api
+      .post("https://api.ghasedak.io/v2/account/info", params, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          apikey
+        }
+      })
+      .then(res => {
+        return res.data;
+      });
+  }
+
+  return {
+    send,
+    bulk,
+    pair,
+    verification,
+    voice,
+    status,
+    newGroup,
+    addNumber,
+    groupList,
+    listNumber,
+    groupEdit,
+    groupRemove,
+    receiveLast,
+    receivePaging,
+    smsCancel,
+    accountInfo
+  };
 };
