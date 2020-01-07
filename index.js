@@ -7,16 +7,14 @@ function validateOpts(opts, fields, required) {
   for (const key in opts) {
     if (opts.hasOwnProperty(key)) {
       if (!fields.includes(key)) {
-        console.error(`${key} is unkown.`);
-        return false;
+        throw new Error(`${key} is unkown.`);
       }
     }
   }
 
   for (const f of required) {
     if (!opts.hasOwnProperty(f)) {
-      console.error(`${f} is required.`);
-      return false;
+      throw new Error(`${f} is required.`);
     }
   }
 
