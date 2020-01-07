@@ -1,18 +1,3 @@
-<p align="center">
-    <img src="media/g4n.png"
-         height="200" alt="ghasedak for nodejs">
-</p>
-
-<p align="center">
-  <a href="https://travis-ci.org/ghasedakapi/ghasedak-node">
-    <img src="https://travis-ci.org/ghasedakapi/ghasedak-node.svg?branch=master"
-         alt="Build Status">
-  </a>
-  <a href="https://www.npmjs.com/package/ghasedak">
-    <img src="https://badge.fury.io/js/ghasedak.svg"
-         alt="npm version">
-  </a>
-</p>
 <p align="center"><sup><strong> Ghasedak sms webservice package for nodejs. </strong></sup></p>
 
 ## install
