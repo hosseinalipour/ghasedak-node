@@ -39,7 +39,7 @@ const Ghasedak = require("ghasedak");
 
 You need a [Ghasedak](https://ghasedak.io) account. Register and get your API key.
 
-Create an instance from `Ghasedak` class with your API key:
+Create an instance from `Ghasedak` with your API key:
 
 ```javascript
 let ghasedak = Ghasedak(
@@ -47,7 +47,7 @@ let ghasedak = Ghasedak(
 );
 ```
 
-Send some sms:
+### with promise
 
 ```javascript
 ghasedak
@@ -59,5 +59,20 @@ ghasedak
   .then(res => {
     // ... check documentation for response type
     // https://ghasedak.io/docs
-  });
+  })
+  .catch(error => {});
+```
+
+### with async/await
+
+```javascript
+async () => {
+  try {
+    await ghasedak.send({
+      message: "Hello World!",
+      receptor: "09xxxxxxxxx",
+      linenumber: "300002525"
+    });
+  } catch (e) {}
+};
 ```

@@ -1,6 +1,6 @@
 {
   "name": "ghasedak-node",
-  "version": "0.1.1",
+  "version": "2.0.0",
   "description": "Ghasedak SMS API",
   "main": "index.js",
   "license": "MIT",
